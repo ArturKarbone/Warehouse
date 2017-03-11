@@ -1,0 +1,1 @@
+# docker run --name coremongo -v /Users/arturk/mongo/:/data/db -d mongo
