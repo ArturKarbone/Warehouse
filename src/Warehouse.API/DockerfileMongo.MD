@@ -1,1 +1,1 @@
-# docker run --name coremongo -v /Users/arturk/mongo/:/data/db -d mongo
+# docker run --name coremongo -v /Users/arturk/mongo/:/data/db -d -p  27017:27017 mongo

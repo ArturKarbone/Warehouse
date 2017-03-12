@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Mongo;
 
 namespace src.Controllers
 {
@@ -13,6 +14,8 @@ namespace src.Controllers
         [HttpGet]
         public IEnumerable<string> Get()
         {
+            SomeTests.Test3();
+         
             return new string[] { "value1", "value2" };
         }
 

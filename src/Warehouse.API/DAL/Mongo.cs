@@ -24,6 +24,9 @@ public class PersonsRepository
 
     public class FooDBContext
     {
+        //public static string ConnectionString => "mongodb://172.17.0.3:27017";
+        //public static string ConnectionString => "mongodb://localhost:27017";
+        public static string ConnectionString=> Environment.GetEnvironmentVariable("mongo_connection_string");
         static FooDBContext(){
             BsonClassMap.RegisterClassMap<Person>(p =>
             {
@@ -31,7 +34,7 @@ public class PersonsRepository
                 p.MapIdMember(c => c.Id);//.SetIdGenerator(CombGuidGenerator.Instance);
             });
         }
-        protected MongoClient Client => new MongoClient("mongodb://localhost:27017");
+        protected MongoClient Client => new MongoClient(ConnectionString);
         protected IMongoDatabase DataBase => Client.GetDatabase("foo");
         public IMongoCollection<Person> Persons => DataBase.GetCollection<Person>("bar");
     }
@@ -45,7 +48,7 @@ public class PersonsRepository
         public string Name { get; set; }
     }
 
-    public class Program2
+    public class SomeTests
     {
         public static void Main1(string[] args)
         {
@@ -56,11 +59,11 @@ public class PersonsRepository
                 p.MapIdMember(c => c.Id);//.SetIdGenerator(CombGuidGenerator.Instance);
             });
             //Test2().Wait();
-            Test3().Wait();
+            Test3();
         }
 
 
-        private static async Task Test3()
+        public static void Test3()
         {
             var repo = new PersonsRepository();
             repo.Insert(new Person { Name = "John" });

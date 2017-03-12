@@ -22,4 +22,4 @@ CMD dotnet run
 # docker build -t artur/coresample .
 
 
-# docker run -d --name core -p 5000:5000 artur/coresample
+# docker run -d --name core -p 5000:5000 -e mongo_connection_string=mongodb://172.17.0.3:27017 artur/coresample
